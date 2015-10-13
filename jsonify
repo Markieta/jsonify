@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Produce JSON readable content from file
+# Author: Christopher Markieta
+
+if [ -z "$1" ]; then
+    echo 'Missing argument for file.'
+    echo 'usage:' "$0" file
+    exit 1
+fi
+
+MY_DIR=$(dirname $0)
+output=''
+
+while IFS='' read -r line || [[ -n "$line" ]]; do
+    output="$output'$line'\n"
+done < "$1"
+
+echo -e "$output"
